@@ -7,7 +7,7 @@ bool EncB = false;
 
 long position = 0;
 
-void aLow();
+void ICACHE_RAM_ATTR aLow();
 //void bLow();
 //void bHigh();
 
