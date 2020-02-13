@@ -1,17 +1,19 @@
 #include <Arduino.h>
 
-int EncAPin = 2;
-int EncBPin = 3;
+int EncAPin = D1;
+int EncBPin = D2;
 
-bool EncA = false;
 bool EncB = false;
 
 long position = 0;
 
 void aLow();
+//void bLow();
+//void bHigh();
 
 void setup() {
     Serial.begin(9600);
+
     //create interrupts
     attachInterrupt(digitalPinToInterrupt(EncAPin), aLow, FALLING);
     //attachInterrupt(digitalPinToInterrupt(EncAPin), aHIGH, RISING);
@@ -24,11 +26,20 @@ void loop() {
 }
 
 void aLow(){
-    EncB = digitalRead(EncBPin);
-    if (EncB){
-        position--;
-    }
-    else{
+    if (digitalRead(EncBPin)){
         position++;
     }
+    else{
+        position--;
+    }
 }
+/*
+void bLow(){
+    Serial.println("LOW");
+    EncB=false;
+}
+void bHigh(){
+    Serial.println("HIGH");
+    EncB=true;
+}
+*/
