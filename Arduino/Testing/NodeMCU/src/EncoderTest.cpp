@@ -15,7 +15,7 @@ void setup() {
     Serial.begin(9600);
 
     //create interrupts
-    attachInterrupt(digitalPinToInterrupt(EncAPin), aLow, FALLING);
+    attachInterrupt(digitalPinToInterrupt(EncAPin), aLow, CHANGE);
     //attachInterrupt(digitalPinToInterrupt(EncAPin), aHIGH, RISING);
     //attachInterrupt(digitalPinToInterrupt(EncBPin), bLow, FALLING);
     //attachInterrupt(digitalPinToInterrupt(EncBPin), bHigh, RISING);
@@ -26,7 +26,7 @@ void loop() {
 }
 
 void aLow(){
-    if (digitalRead(EncBPin)){
+    if (digitalRead(EncBPin)==digitalRead(EncAPin)){
         position++;
     }
     else{
