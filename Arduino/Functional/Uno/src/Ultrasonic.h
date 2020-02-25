@@ -4,6 +4,7 @@
 class Ultrasonic{
     char echoPin, trigPin;
     bool threePin;
+    int distance;
 
     public:
         Ultrasonic(char echoPin, char trigPin, bool threePin){
@@ -13,7 +14,7 @@ class Ultrasonic{
         }
 
     void setPinTypes();
-    int getDistance();
+    void findDistance();
     char getechoPin(){
         return this->echoPin;
     }
@@ -24,13 +25,13 @@ void Ultrasonic::setPinTypes(){
     pinMode(this->trigPin, OUTPUT);
 }
 
-int Ultrasonic::getDistance(){
+void Ultrasonic::findDistance(){
     digitalWrite(this->trigPin, LOW);
     delayMicroseconds(2);
     digitalWrite(this->trigPin, HIGH);
     delayMicroseconds(10);
     digitalWrite(this->trigPin, LOW);
-    return  pulseIn(this->echoPin, HIGH) * (0.034 / 2) / 2.54;
+    this->distance = pulseIn(this->echoPin, HIGH) * (0.034 / 2) / 2.54;
 }
 
 

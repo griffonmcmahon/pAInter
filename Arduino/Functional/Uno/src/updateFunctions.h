@@ -1,5 +1,6 @@
 #include <Arduino.h>
 #include <Motor.h>
+#include <Ultrasonic.h>
 
 int i;
 
@@ -11,7 +12,7 @@ void updateMotors(){
 
 void updateUltrasonics(){
     for (i=0;i<1;i++){
-        UltrasonicArray[i].MoveVelocity();
+        UltrasonicArray[i].findDistance();
     }
 
 }
