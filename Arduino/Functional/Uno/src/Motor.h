@@ -16,6 +16,7 @@ class Motor{
     }
 
     void MoveVelocity();
+    void setPinTypes();
     void aUp();
     char getencAPin(){
         return this->encAPin;
@@ -38,10 +39,13 @@ void Motor::aUp(){
     }
 }
 
-
-
-
-
+void Motor::setPinTypes(){
+    pinMode(this->encAPin, INPUT);
+    pinMode(this->encBPin, INPUT);
+    pinMode(this->enPin, OUTPUT);
+    pinMode(this->in1Pin, OUTPUT);
+    pinMode(this->in2Pin, OUTPUT);
+}
 
 
 Motor FirstLiftMotor(2,3,4,5,6,1000);
