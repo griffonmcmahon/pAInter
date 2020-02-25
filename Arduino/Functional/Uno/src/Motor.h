@@ -1,4 +1,4 @@
-//This library is for functions to control lift motors
+//This library is for functions to control motors
 #include <Arduino.h>
 class Motor{
     char encAPin, encBPin, enPin, in1Pin, in2Pin;
