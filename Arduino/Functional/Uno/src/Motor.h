@@ -21,11 +21,13 @@ class Motor{
     char getencAPin(){
         return this->encAPin;
     }
+    void setVelocity(double velocity){
+      this->velocity = velocity;
+    }
 };
 
 void Motor::MoveVelocity(){
-    velocity=velocity;
-    digitalWrite(enPin, (velocity!=0));
+    analogWrite(enPin, (int)(velocity*255.0));
     digitalWrite(in1Pin, (velocity>0));
     digitalWrite(in2Pin, (velocity<0));
 }

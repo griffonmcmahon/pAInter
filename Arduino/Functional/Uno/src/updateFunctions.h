@@ -10,9 +10,11 @@ void updateMotors(){
     }
 }
 
+/*
 void updateUltrasonics(){
     for (i=0;i<1;i++){
         UltrasonicArray[i].findDistance();
     }
 
 }
+*/
