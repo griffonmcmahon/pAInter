@@ -1,10 +1,10 @@
 #include <Arduino.h>
-#include <Motor.h>
+#include <Motor.hpp>
 #include <Ultrasonic.h>
 
 int i;
 
-void updateMotors(){
+void updateMotors(Motor MotorArray[]){
     for (i=0;i<1;i++){
         MotorArray[i].MoveVelocity();
     }
