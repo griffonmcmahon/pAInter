@@ -11,7 +11,7 @@ class Motor{
     int velocity;
     public:
 
-        Motor(char encAPin, char encBPin, char enPin,char in1Pin, char in2Pin, int encPerInch);
+        Motor(char encAPin, char encBPin, char enPin,char in1Pin, char in2Pin);
         char getencAPin();
         void setVelocity(int velocity);
         void MoveVelocity();

@@ -1,13 +1,12 @@
 #include <Arduino.h>
 #include <Motor.hpp>
 
-Motor::Motor(char encAPin, char encBPin, char enPin,char in1Pin, char in2Pin, int encPerInch){
+Motor::Motor(char encAPin, char encBPin, char enPin,char in1Pin, char in2Pin){
     this->encAPin=encAPin;
     this->encBPin=encBPin;
     this->enPin=enPin;
     this->in1Pin=in1Pin;
     this->in2Pin=in2Pin;
-    this->encPerInch=encPerInch;
 }
 
 char Motor::getencAPin(){

@@ -5,7 +5,7 @@
 int i;
 
 void updateMotors(Motor MotorArray[]){
-    for (i=0;i<1;i++){
+    for (i=0;i<2;i++){
         MotorArray[i].MoveVelocity();
     }
 }
