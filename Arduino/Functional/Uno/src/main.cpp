@@ -29,14 +29,15 @@ void setup() {
 
 void loop() {
   x = analogRead(VRx)/2.05-255;
-  delay(25);
   y = analogRead(VRy)/2.05-255;
   Serial.println(x);
   sw=digitalRead(switchPin);
-  ThirdStage.MoveStepper(10);
-  LiftMotors[1].setVelocity(0);
-  LiftMotors[0].setVelocity(0);
-  /*
+  if(sw){
+    //ThirdStage.MoveStepper(10);
+  }
+  //LiftMotors[1].setVelocity(0);
+  //LiftMotors[0].setVelocity(0);
+
   if(abs(x)>20){
     LiftMotors[0].setVelocity(x);
   }
@@ -49,6 +50,6 @@ void loop() {
   else{
     LiftMotors[1].setVelocity(0);
   }
-  */
+
   updateMotors(LiftMotors);
 }

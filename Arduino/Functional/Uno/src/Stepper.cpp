@@ -13,10 +13,10 @@ void Stepper::setDirection(char direction){
 void Stepper::MoveStepper(int numSteps){
   digitalWrite(this->dirPin,this->direction);
     while(numSteps>0){
-      digitalWrite(stepPin, HIGH);
-	    delayMicroseconds(2000);
-	    digitalWrite(stepPin, LOW);
-	    delayMicroseconds(2000);
+      digitalWrite(this->stepPin, HIGH);
+	    delayMicroseconds(5000);
+	    digitalWrite(this->stepPin, LOW);
+	    delayMicroseconds(5000);
       numSteps--;
     }
 
