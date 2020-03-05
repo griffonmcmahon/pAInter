@@ -5,7 +5,6 @@
 
 //#include <Ultrasonic.h>
 
-
 Motor FirstLiftMotor(1,2,3,5,6);
 Motor SecondLiftMotor(7,8,9,10,11);
 Motor LiftMotors[] = {FirstLiftMotor, SecondLiftMotor};
@@ -25,31 +24,14 @@ void setup() {
   Serial.begin(9600);
   pinMode(VRx, INPUT);
   pinMode(VRy, INPUT);
+  pinMode(8,OUTPUT);
+  pinMode(4,OUTPUT);
 }
 
 void loop() {
-  x = analogRead(VRx)/2.05-255;
-  y = analogRead(VRy)/2.05-255;
-  Serial.println(x);
-  sw=digitalRead(switchPin);
-  if(sw){
-    //ThirdStage.MoveStepper(10);
-  }
-  //LiftMotors[1].setVelocity(0);
-  //LiftMotors[0].setVelocity(0);
-
-  if(abs(x)>20){
-    LiftMotors[0].setVelocity(x);
-  }
-  else{
-    LiftMotors[0].setVelocity(0);
-  }
-  if (abs(y)>20){
-    LiftMotors[1].setVelocity(y);
-  }
-  else{
-    LiftMotors[1].setVelocity(0);
-  }
+  delay(5000);
+  ThirdStage.MoveStepper(4000);
+  delay(1000);
 
   updateMotors(LiftMotors);
 }

@@ -34,9 +34,6 @@ void Ultrasonic::findDistance(){
     this->distance = pulseIn(this->echoPin, HIGH) * (0.034 / 2) / 2.54;
 }
 
-
-
-
 Ultrasonic UltrasonicTop(12,13,false);
 
 Ultrasonic UltrasonicArray[] = {UltrasonicTop};

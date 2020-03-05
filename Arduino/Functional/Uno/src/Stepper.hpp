@@ -14,8 +14,6 @@ class Stepper{
         void setDirection(char direction);
         void MoveStepper(int numSteps);
         void setPinTypes();
-
-
 };
 
 
