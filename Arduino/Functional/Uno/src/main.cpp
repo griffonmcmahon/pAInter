@@ -1,37 +1,49 @@
 #include <Arduino.h>
 #include <Motor.hpp>
 #include <Stepper.hpp>
+#include <Joystick.hpp>
 #include <updateFunctions.hpp>
+#include <initializeFunctions.hpp>
 
 //#include <Ultrasonic.h>
 
-Motor FirstLiftMotor(1,2,3,5,6);
-Motor SecondLiftMotor(7,8,9,10,11);
-Motor LiftMotors[] = {FirstLiftMotor, SecondLiftMotor};
+//Motor FirstLiftMotor(7,9,10,11,12);
+Motor SecondLiftMotor(3,8,5,4,6);
+Motor LiftMotors[] = {SecondLiftMotor};
+Joystick Joystick(A0,A1,2);
 
-Stepper ThirdStage(8,4);
+void LiftMotors0aUp();
 
-//for joystick demo
-int VRx = A0;
-int VRy = A1;
-int switchPin = 2;
-
-int x = 0;
-int y = 0;
-int sw = 0;
+//Stepper ThirdStage(8,4);
 
 void setup() {
   Serial.begin(9600);
-  pinMode(VRx, INPUT);
-  pinMode(VRy, INPUT);
-  pinMode(8,OUTPUT);
-  pinMode(4,OUTPUT);
+  initializeMotors(LiftMotors);
+
+  attachInterrupt(digitalPinToInterrupt(LiftMotors[0].encAPin),LiftMotors0aUp, FALLING);
+
 }
 
 void loop() {
-  delay(5000);
-  ThirdStage.MoveStepper(4000);
-  delay(1000);
+
+  Serial.println(LiftMotors[0].position);
+  delay(100);
+
+  if(Joystick.xHigh){
+    LiftMotors[0].setVelocity(250);
+  }
+  else if(Joystick.xLow){
+    LiftMotors[0].setVelocity(-250);
+  }
+  else{
+    LiftMotors[0].setVelocity(0);
+  }
 
   updateMotors(LiftMotors);
+  Joystick.updateJoystick();
+
+}
+
+void LiftMotors0aUp(){
+  LiftMotors[0].aUp();
 }

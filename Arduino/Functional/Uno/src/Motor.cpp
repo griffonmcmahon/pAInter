@@ -17,7 +17,7 @@ void Motor::setVelocity(int velocity){
   this->velocity = velocity;
 }
 
-void Motor::MoveVelocity(){
+void Motor::moveVelocity(){
     analogWrite(this->enPin, abs(this->velocity));//(int)(this->velocity*255.0)
     digitalWrite(this->in1Pin, (this->velocity>0));
     digitalWrite(this->in2Pin, (this->velocity<0)); //(this->velocity>0)

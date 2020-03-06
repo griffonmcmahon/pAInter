@@ -1,12 +1,13 @@
 #include <Arduino.h>
 #include <Motor.hpp>
 #include <Ultrasonic.h>
+#include <Joystick.hpp>
 
 int i;
 
 void updateMotors(Motor MotorArray[]){
-    for (i=0;i<2;i++){
-        MotorArray[i].MoveVelocity();
+    for (i=0;i<1;i++){
+        MotorArray[i].moveVelocity();
     }
 }
 

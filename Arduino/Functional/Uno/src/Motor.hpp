@@ -5,16 +5,17 @@
 #include <Arduino.h>
 
 class Motor{
+public:
     char encAPin, encBPin, enPin, in1Pin, in2Pin;
     int encPerInch;
-    long position;
+
     int velocity;
     public:
-
+        long position;
         Motor(char encAPin, char encBPin, char enPin,char in1Pin, char in2Pin);
         char getencAPin();
         void setVelocity(int velocity);
-        void MoveVelocity();
+        void moveVelocity();
         void aUp();
         void setPinTypes();
 

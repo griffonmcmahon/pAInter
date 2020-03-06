@@ -1,3 +1,5 @@
+#ifndef SOME_STRING_Z
+#define SOME_STRING_Z
 //This library is for functions to control ultrasonic sensors
 #include <Arduino.h>
 
@@ -33,7 +35,4 @@ void Ultrasonic::findDistance(){
     digitalWrite(this->trigPin, LOW);
     this->distance = pulseIn(this->echoPin, HIGH) * (0.034 / 2) / 2.54;
 }
-
-Ultrasonic UltrasonicTop(12,13,false);
-
-Ultrasonic UltrasonicArray[] = {UltrasonicTop};
+#endif
