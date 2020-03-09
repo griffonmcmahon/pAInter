@@ -4,39 +4,47 @@
 #include <Joystick.hpp>
 #include <updateFunctions.hpp>
 #include <initializeFunctions.hpp>
-
-//#include <Ultrasonic.h>
+#include <Ultrasonic.hpp>
 
 //Motor FirstLiftMotor(7,9,10,11,12);
-Motor SecondLiftMotor(3,8,5,4,6);
+Motor SecondLiftMotor(3,2,5,4,6);
 Motor LiftMotors[] = {SecondLiftMotor};
 Joystick Joystick(A0,A1,2);
 
 void LiftMotors0aUp();
 
-//Stepper ThirdStage(8,4);
+Stepper ThirdStage(8,7);
+
+Ultrasonic UltraTop(12,12);
+
+Ultrasonic Ultrasonics[] = {UltraTop};
 
 void setup() {
   Serial.begin(9600);
   initializeMotors(LiftMotors);
-
+  initializeStepper(ThirdStage);
+  initializeUltrasonics(Ultrasonics);
   attachInterrupt(digitalPinToInterrupt(LiftMotors[0].encAPin),LiftMotors0aUp, FALLING);
 
 }
 
 void loop() {
 
-  Serial.println(LiftMotors[0].position);
-  delay(100);
+  Ultrasonics[0].findDistance();
+  Serial.println(Ultrasonics[0].distance);
 
   if(Joystick.xHigh){
-    LiftMotors[0].setVelocity(250);
+    Serial.println("Up");
+    ThirdStage.setDirection(0);
+    ThirdStage.MoveStepper(20);
   }
   else if(Joystick.xLow){
-    LiftMotors[0].setVelocity(-250);
+    Serial.println("Down");
+    ThirdStage.setDirection(1);
+    ThirdStage.MoveStepper(20);
   }
   else{
-    LiftMotors[0].setVelocity(0);
+
   }
 
   updateMotors(LiftMotors);

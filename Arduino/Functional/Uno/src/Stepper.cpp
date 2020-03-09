@@ -14,9 +14,9 @@ void Stepper::MoveStepper(int numSteps){
   digitalWrite(this->dirPin,this->direction);
   for(int x = 0; x < numSteps ; x++) {
     digitalWrite(this->stepPin,HIGH);
-    delayMicroseconds(800);
+    delayMicroseconds(600);
     digitalWrite(this->stepPin,LOW);
-    delayMicroseconds(800);
+    delayMicroseconds(600);
   }
 }
 

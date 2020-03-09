@@ -1,6 +1,6 @@
 #include <Arduino.h>
 #include <Motor.hpp>
-#include <Ultrasonic.h>
+#include <Ultrasonic.hpp>
 #include <Joystick.hpp>
 
 int i;
@@ -11,11 +11,10 @@ void updateMotors(Motor MotorArray[]){
     }
 }
 
-/*
-void updateUltrasonics(){
+
+void updateUltrasonics(Ultrasonic UltrasonicArray[]){
     for (i=0;i<1;i++){
         UltrasonicArray[i].findDistance();
     }
 
 }
-*/
