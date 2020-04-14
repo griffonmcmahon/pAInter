@@ -4,22 +4,20 @@
 
 #include <Arduino.h>
 
-class Motor{
+class LiftMotor{
 public:
-    char encAPin, encBPin, enPin, in1Pin, in2Pin;
+    char encAPin, encBPin, enPin, in1Pin, in2Pin, topLimitPin, botLimitPin;
     int encPerInch;
 
     int velocity;
     public:
         long position;
-        Motor(char encAPin, char encBPin, char enPin,char in1Pin, char in2Pin);
+        LiftMotor(char encAPin, char encBPin, char enPin,char in1Pin, char in2Pin, char topLimitPin, char botLimitPin);
         char getencAPin();
         void setVelocity(int velocity);
         void moveVelocity();
         void aUp();
         void setPinTypes();
-
-
 };
 
 

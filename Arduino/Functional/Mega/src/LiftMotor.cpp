@@ -1,29 +1,31 @@
 #include <Arduino.h>
-#include <Motor.hpp>
+#include <LiftMotor.hpp>
 
-Motor::Motor(char encAPin, char encBPin, char enPin,char in1Pin, char in2Pin){
+LiftMotor::LiftMotor(char encAPin, char encBPin, char enPin,char in1Pin, char in2Pin, char topLimitPin, char botLimitPin){
     this->encAPin=encAPin;
     this->encBPin=encBPin;
     this->enPin=enPin;
     this->in1Pin=in1Pin;
     this->in2Pin=in2Pin;
+    this->topLimitPin=topLimitPin;
+    this->botLimitPin=botLimitPin;
 }
 
-char Motor::getencAPin(){
+char LiftMotor::getencAPin(){
     return this->encAPin;
 }
 
-void Motor::setVelocity(int velocity){
+void LiftMotor::setVelocity(int velocity){
   this->velocity = velocity;
 }
 
-void Motor::moveVelocity(){
+void LiftMotor::moveVelocity(){
     analogWrite(this->enPin, abs(this->velocity));//(int)(this->velocity*255.0)
     digitalWrite(this->in1Pin, (this->velocity>0));
     digitalWrite(this->in2Pin, (this->velocity<0)); //(this->velocity>0)
 }
 
-void Motor::aUp(){
+void LiftMotor::aUp(){
     if (digitalRead(this->encBPin)){
         this->position++;
     }
@@ -32,7 +34,7 @@ void Motor::aUp(){
     }
 }
 
-void Motor::setPinTypes(){
+void LiftMotor::setPinTypes(){
     pinMode(this->encAPin, INPUT);
     pinMode(this->encBPin, INPUT);
     pinMode(this->enPin, OUTPUT);
