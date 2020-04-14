@@ -1,12 +1,17 @@
 #include <Arduino.h>
-#include <Motor.hpp>
+#include <LiftMotor.hpp>
 #include <Ultrasonic.hpp>
-#include <Joystick.hpp>
+#include <DriveMotor.hpp>
 
 int i;
 
-void updateMotors(Motor MotorArray[]){
-    for (i=0;i<1;i++){
+void updateLiftMotors(LiftMotor MotorArray[]){
+    for (i=0;i<2;i++){
+        MotorArray[i].moveVelocity();
+    }
+}
+void updateDriveMotors(DriveMotor MotorArray[]){
+    for (i=0;i<3;i++){
         MotorArray[i].moveVelocity();
     }
 }

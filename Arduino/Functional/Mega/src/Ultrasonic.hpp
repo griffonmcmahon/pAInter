@@ -4,19 +4,18 @@
 #include <Arduino.h>
 
 class Ultrasonic{
-    char echoPin, trigPin;
+    char sigPin;
 
     public:
       int distance;
-        Ultrasonic(char echoPin, char trigPin){
-            this->trigPin = trigPin;
-            this->echoPin = echoPin;
+        Ultrasonic(char sigPin){
+            this->sigPin = sigPin;
         }
 
     void setPinTypes();
     void findDistance();
-    char getechoPin(){
-        return this->echoPin;
+    char getSigPin(){
+        return this->sigPin;
     }
 };
 

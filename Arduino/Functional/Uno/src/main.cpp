@@ -6,14 +6,14 @@
 #include <initializeFunctions.hpp>
 #include <Ultrasonic.hpp>
 
-//Motor FirstLiftMotor(7,9,10,11,12);
-Motor SecondLiftMotor(3,2,5,4,6);
-Motor LiftMotors[] = {SecondLiftMotor};
-Joystick Joystick(A0,A1,2);
+Stepper ThirdStage(8,7);
+Motor FirstLiftMotor();
+Motor SecondLiftMotor();
+Motor LiftMotors[] = {FirstLiftMotor, SecondLiftMotor};
 
 void LiftMotors0aUp();
 
-Stepper ThirdStage(8,7);
+
 
 Ultrasonic UltraTop(12,12);
 

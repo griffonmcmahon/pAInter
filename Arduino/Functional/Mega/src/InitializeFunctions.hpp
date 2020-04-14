@@ -1,16 +1,22 @@
 #include <Arduino.h>
-#include <Motor.hpp>
+#include <DriveMotor.hpp>
+#include <LiftMotor.hpp>
 #include <Ultrasonic.hpp>
 #include <Stepper.hpp>
 
-void initializeMotors(Motor MotorArray[]){
-    for (int i=0;i<1;i++){
+void initializeMotors(LiftMotor MotorArray[]){
+    for (int i=0;i<2;i++){
+      MotorArray[i].setPinTypes();
+    }
+}
+void initializeMotors(DriveMotor MotorArray[]){
+    for (int i=0;i<3;i++){
       MotorArray[i].setPinTypes();
     }
 }
 
 void initializeUltrasonics(Ultrasonic UltrasonicArray[]){
-    for (int i=0;i<1;i++){
+    for (int i=0;i<6;i++){
         UltrasonicArray[i].setPinTypes();
     }
 }

@@ -1,60 +1,81 @@
 #include <Arduino.h>
-#include <Motor.hpp>
+#include <LiftMotor.hpp>
 #include <Stepper.hpp>
-#include <Joystick.hpp>
 #include <updateFunctions.hpp>
 #include <initializeFunctions.hpp>
 #include <Ultrasonic.hpp>
+#include <Switch.hpp>
 
-//Motor FirstLiftMotor(7,9,10,11,12);
-Motor SecondLiftMotor(3,2,5,4,6);
-Motor LiftMotors[] = {SecondLiftMotor};
-Joystick Joystick(A0,A1,2);
+LiftMotor FirstLiftMotor();
+LiftMotor SecondLiftMotor();
+LiftMotor LiftMotors[] = {FirstLiftMotor, SecondLiftMotor};
 
-void LiftMotors0aUp();
+void LiftMotors0EncUp();
+void LiftMotors1EncUp();
 
-Stepper ThirdStage(8,7);
+DriveMotor LeftDriveMotor();
+DriveMotor RightDriveMotor();
+DriveMotor MidDriveMotor();
+DriveMotor DriveMotors[] = {LeftDriveMotor, RightDriveMotor, MidDriveMotor};
 
-Ultrasonic UltraTop(12,12);
+void DriveMotors0EncUp();
+void DriveMotors1EncUp();
+void DriveMotors2EncUp();
 
-Ultrasonic Ultrasonics[] = {UltraTop};
+Stepper ThirdStage();
+
+Ultrasonic UltraTop();
+Ultrasonic UltraOut();
+Ultrasonic UltraSL();
+Ultrasonic UltraWL();
+Ultrasonic UltraWR();
+Ultrasonic UltraSR();
+Ultrasonic Ultrasonics[] = {UltraTop, UltraOut, UltraSL, UltraWL, UltraWR, UltraSR};
+
+
+Switch bot1Switch();
+Switch top1Switch();
+Switch bot2Switch();
+Switch top2Switch();
+Switch Switches[] = {bot1Switch, top1Switch, bot2Switch, top2Switch};
 
 void setup() {
   Serial.begin(9600);
-  initializeMotors(LiftMotors);
+  initializeLiftMotors(LiftMotors);
+  initialiseDriveMotors(DriveMotors);
   initializeStepper(ThirdStage);
   initializeUltrasonics(Ultrasonics);
-  attachInterrupt(digitalPinToInterrupt(LiftMotors[0].encAPin),LiftMotors0aUp, FALLING);
+  attachInterrupt(digitalPinToInterrupt(LiftMotors[0].encAPin),LiftMotors0EncUp, FALLING);
+  attachInterrupt(digitalPinToInterrupt(LiftMotors[1].encAPin),LiftMotors1EncUp, FALLING);
+  attachInterrupt(digitalPinToInterrupt(DriveMotors[0].encAPin),DriveMotors0EncUp, FALLING);
+  attachInterrupt(digitalPinToInterrupt(DriveMotors[1].encAPin),DriveMotors1EncUp, FALLING);
+  attachInterrupt(digitalPinToInterrupt(DriveMotors[2].encAPin),DriveMotors2EncUp, FALLING);
 
 }
 
 void loop() {
+    //update loop
+    updateLiftMotors(LiftMotors);
+    updateDriveMotors(DriveMotors);
+    updateUltrasonics(Ultrasonics);
+    //update switches
 
 
-
-
-  Ultrasonics[0].findDistance();
-  Serial.println(Ultrasonics[0].distance);
-
-  if(Joystick.xHigh){
-    Serial.println("Up");
-    ThirdStage.setDirection(0);
-    ThirdStage.MoveStepper(20);
-  }
-  else if(Joystick.xLow){
-    Serial.println("Down");
-    ThirdStage.setDirection(1);
-    ThirdStage.MoveStepper(20);
-  }
-  else{
-
-  }
-
-  updateMotors(LiftMotors);
-  Joystick.updateJoystick();
 
 }
 
-void LiftMotors0aUp(){
+void LiftMotors0EncUp(){
   LiftMotors[0].aUp();
+}
+void LiftMotors1EncUp(){
+  LiftMotors[1].aUp();
+}
+void DriveMotors0EncUp(){
+  DriveMotors[0].aUp();
+}
+void DriveMotors1EncUp(){
+  DriveMotors[1].aUp();
+}
+void DriveMotors2EncUp(){
+  DriveMotors[2].aUp();
 }
