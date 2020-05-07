@@ -3,13 +3,14 @@
 #include <LiftMotor.hpp>
 #include <Ultrasonic.hpp>
 #include <Stepper.hpp>
+#include <Switch.hpp>
 
-void initializeMotors(LiftMotor MotorArray[]){
+void initializeLiftMotors(LiftMotor MotorArray[]){
     for (int i=0;i<2;i++){
       MotorArray[i].setPinTypes();
     }
 }
-void initializeMotors(DriveMotor MotorArray[]){
+void initializeDriveMotors(DriveMotor MotorArray[]){
     for (int i=0;i<3;i++){
       MotorArray[i].setPinTypes();
     }
@@ -24,5 +25,10 @@ void initializeUltrasonics(Ultrasonic UltrasonicArray[]){
 void initializeStepper(Stepper Stepper){
     for (int i=0;i<1;i++){
         Stepper.setPinTypes();
+    }
+}
+void initializeStepper(Switch SwitchArray[]){
+    for (int i=0;i<4;i++){
+        SwitchArray[i].setPinTypes();
     }
 }
